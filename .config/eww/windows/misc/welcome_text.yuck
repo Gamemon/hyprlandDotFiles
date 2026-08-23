@@ -1,0 +1,23 @@
+;; ── welcome text───────────────────────────────────────────────────
+;; Text displaying date and weather in Japanese
+;; Anchored right screen
+
+(defwindow welcome_text
+  :monitor 0
+  :stacking "bottom"
+  :exclusive false
+  :geometry (geometry :x "1740px" :y "20px" :width "300px" :height "90px" :anchor "top left")
+  :focusable false
+
+  (box :orientation "vertical" :halign "end" :class "stats-box" :space "1px"
+
+    ;; Welcome Line
+    (label :text "> ようこそ, ${USER}" :class "label-primary" :halign "end" :style "margin-top: -20px;")
+
+    ;; Date Line
+    (label :text "今日: ${welcome_date}" :class "label-primary" :halign "end" :style "margin-top: -10px;")
+
+    ;; Weather Line
+    (label :text "天気: ${weather_forecast}" :class "label-primary" :halign "end" :style "margin-top: -10px;")
+  )
+)

@@ -1,0 +1,42 @@
+{
+  "style": "/home/escproxy/.config/waybar/style.css",
+  
+  "layer": "top",
+  "position": "top",
+  "height": 43,
+  "reload_style_on_change": true,
+  "margin-top": 3,
+  "margin-left": 5,
+  "margin-right": 5,
+  
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+    "custom/weather",
+    "custom/updates",
+    "custom/cava",
+    "custom/pomodoro",
+    "custom/github-commits"
+  ],
+  
+  "modules-center": [
+    "memory",
+    "cpu",
+    "temperature"
+  ],
+  
+  "modules-right": [
+    "idle_inhibitor",
+    "battery",
+    "hyprland/language",
+    "keyboard-state",
+    "backlight",
+    "pulseaudio",
+    "network",
+    "clock",
+    "custom/notification",
+    "tray"
+  ],
+
+  "include": "/home/escproxy/.config/waybar/modules.jsonc"
+}

@@ -1,0 +1,40 @@
+;; ── visualizer window ───────────────────────────────────────────────────
+;; Displays ASCII visual for audio activity.
+;; Anchored very top
+
+(defwindow audio_status
+  :monitor 0
+  :stacking "bottom"
+  :exclusive false
+  :geometry (geometry :x "79px" 
+                      :y "288px" 
+                      :width "300px" 
+                      :height "40px"
+                      :anchor "top right")
+  :focusable false
+  ;; Assuming show_eww is defined in your main file. Remove if not using it.
+
+  (box :orientation "vertical" :halign "end"
+    (label :text ascii_audio_status :class "ascii-core-status")
+  )
+)
+
+(defwindow visualizer_window
+  :monitor 0
+  :stacking "bottom"
+  :exclusive false
+  :geometry (geometry :x "38px" :y "1000px" :width "380px" :height "150px" :anchor "top center")
+  :focusable false
+  
+  (audio-visualizer)
+)
+  
+(defwidget audio-visualizer []
+  (box :class "visualizer-outer-frame"
+    (box :class "visualizer-inner-frame"
+      (label :text visualizer_content
+             :markup true
+             :class "visualizer-text")
+    )
+  )
+)

@@ -1,0 +1,56 @@
+Insert my fave keybinds here pls
+## File Exploration
+- Main = Oil, "-"
+- Floating = Mini, "<leader>ee"
+- Side Tab = Snacks, "<leader>es"
+- Prev = Snacks, "<leader>dB" (delete or close buffer (confirm))
+
+### Searching
+- *(Oil & Snacks allow searching names)
+- Main = Snacks, "<leader>pf" (file name)
+- Secondary = Snacks, "<leader>ps" (grep)
+- Alt. Secondary = Snacks, "<leader>pws" (grep word selected)
+- Config = Snacks, "<leader>pc" (find config)
+- Keymaps = Snacks, "<leader>pk" (Search keymaps)
+- Recent Files = telescope, "<leader>pr" (Fuzzy find recents)
+
+### Harpoon
+- Add to harp list = Harpoon, "<leader>a" (add to list)
+- Show list = "<C-e>" (Show the files for quick access/harpoon)
+-Quick access binds ctrl+ y or i or n or s
+- Next / Prev = Harpoon, "<C-S-P/N>" (previous or next)
+
+## Screen Split
+- Vert = keymap, "<leader>sv" (split vertically)
+- Hori = keymap, "<leader>sh" (split horizontally)
+- Even = keymap, "<leader>se" (Even split)
+- Close = keymap, "<leader>sx" (Close current split window)
+
+- Maximize = vim-maximizer, "<leader>sm" (Maximize one side of split)
+
+## Undos
+- Undo tree show = undotree, "<leader>u" (show left side undo tree)
+    - same keybind undoes showing the tree
+
+## In File Changes
+- Name = Snacks, "<leader>rN" (rename current file)
+
+## Sessions
+- Save Session = auto-session, "<leader>ws" (save)
+- Load Session = auto-session, "<leader>wr" (load)
+
+## Git
+- Branch Select = Snacks, "<leader>gbr" (pick and switch git branches)
+- fugitive branch overview = fugitive, "<leader>gg" (show deets)
+    - Stage file with 's' and unstage with 'u' while hovering over status
+    - Check diffs with '=' over file
+    - 'g?' shows all keybinds
+
+## Lazygit
+- Lazygit = Snacks, "<leader>lg" (opens lazy git)
+- Lazygit log = Snacks, "<leader>gl" (Lazygit log)
+- keybinds = lazygit, '?' (show keybinds and stuff)
+
+## Extras
+- Themes = telescope, "<leader>ths" (theme selector and preview)
+- Help = Snacks, "<leader>vh" (help pages)

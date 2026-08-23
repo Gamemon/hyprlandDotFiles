@@ -1,0 +1,52 @@
+;;(defwindow right_internet_text
+;;  :visible show_eww
+;;  :anchor "top left"
+;;  :monitor 0
+;;  :stacking "bottom"
+;;  :exclusive false
+;;  :geometry (geometry
+;;    :x "100px"
+;;    :y "980px"
+;;    :width "520px"
+;;    :height "40px")
+;;  :focusable false
+;;
+;;  (box
+;;    :class "internet-clean-box"
+;;    :orientation "horizontal"
+;;    :halign "fill"
+;;    :space "10px"
+;;
+;;    (box
+;;      :hexpand true
+;;      :halign "center"
+;;      (label
+;;        :text download_speed
+;;        :class "label-primary2"
+;;        :halign "center"))
+;;
+;;    (box
+;;      :hexpand true
+;;      :halign "center"
+;;      (label
+;;        :text upload_speed
+;;        :class "label-primary2"
+;;        :halign "center"))
+;;
+;;    (box
+;;      :hexpand true
+;;      :halign "center"
+;;      (label
+;;        :text ping_ms
+;;        :class "label-primary2"
+;;        :halign "center"))
+;;
+;;    (box
+;;      :hexpand true
+;;      :halign "center"
+;;      (label
+;;        :text vpn_status_text
+;;        :class "label-primary2"
+;;        :halign "center"))
+;;  )
+;;)

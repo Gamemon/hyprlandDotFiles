@@ -1,0 +1,43 @@
+;; ── power mode text ───────────────────────────────────────────────────
+;; Text displaying power in Japanese text
+;; Anchored bottom left
+
+(defwindow power_mode_text
+  :anchor "top left"
+  :monitor 0
+  :stacking "bottom"
+  :exclusive false
+  :geometry (geometry :x "15px" :y "724px" :width "240px" :height "62px")
+  :focusable false
+
+  (box :orientation "vertical" :halign "start" :space "4px"
+ 
+    ;; Power Draw
+    (box :orientation "horizontal" :halign "start" :space "4px" :style "margin-top:-10px;"
+      (label :text "> " :class "power-label2")
+      (label :text "電力:" :class "power-label" :show-truncated false)
+      (label :text power_draw :class "power-value" :show-truncated false)
+    )
+
+    ;; CPU Voltage
+    (box :orientation "horizontal" :halign "start" :space "4px" :style "margin-top: -10px;"
+      (label :text "> " :class "power-label2")
+      (label :text "CPU電圧:" :class "power-label" :show-truncated false)
+      (label :text cpu_voltage :class "power-value" :show-truncated false)
+    )
+
+    ;; GPU Voltage
+    (box :orientation "horizontal" :halign "start" :space "4px" :style "margin-top: -10px;"
+      (label :text "> " :class "power-label2")
+      (label :text "GPU電圧:" :class "power-label" :show-truncated false)
+      (label :text gpu_voltage :class "power-value" :show-truncated false)
+    )
+    
+    ;; DC Voltage / Input
+    (box :orientation "horizontal" :halign "start" :space "4px" :style "margin-top: -10px;"
+      (label :text "> " :class "power-label2")
+      (label :text "入力電圧:" :class "power-label" :show-truncated false)
+      (label :text dc_voltage :class "power-value" :show-truncated false)
+    )
+  )
+)

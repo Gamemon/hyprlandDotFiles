@@ -1,0 +1,42 @@
+;; ── right fan data───────────────────────────────────────────────────
+;; Text displaying cooling and fan RPM
+;; Anchored bottom right
+
+(defwindow right_fan_data
+  :monitor 0
+  :stacking "bottom"
+  :exclusive false
+  :geometry (geometry :x "171px" :y "724px" :width "200px" :height "64px" :anchor "top left")
+  :focusable false
+
+  (box :orientation "vertical" :halign "start" :space "4px"
+
+    ;; CPU FAN RPM
+    (box :orientation "horizontal" :halign "end" :space "4px" :style "margin-top:-10px;"
+      (label :text "> " :class "power-label2"   :halign "end"   )
+      (label :text "CPU 回転: " :class "power-label3")
+      (label :text cpu_fan_rpm :class "power-value" :halign "end"  )
+    )
+
+    ;; CPU FAN ANIMATION
+    (box :orientation "horizontal" :halign "start" :space "4px" :style "margin-top: -10px;"
+      (label :text "> " :class "power-label2"   :halign "end"   )
+      (label :text "気流動態: " :class "power-label3")
+      (label :text cpu_fan_ascii :class "power-value"  :halign "end"  )
+    )
+    
+    ;; GPU FAN RPM
+    (box :orientation "horizontal" :halign "end" :space "4px" :style "margin-top:-10px;"
+      (label :text "> " :class "power-label2"   :halign "end"   )
+      (label :text "GPU 回転: " :class "power-label3")
+      (label :text gpu_fan_rpm :class "power-value" :halign "end"  )
+    )
+
+    ;; GPU FAN ANIMATION
+    (box :orientation "horizontal" :halign "start" :space "4px" :style "margin-top: -10px;"
+      (label :text "> " :class "power-label2"   :halign "end"   )
+      (label :text "気流動態: " :class "power-label3")
+      (label :text gpu_fan_ascii :class "power-value"  :halign "end"  )
+    )
+  )
+)
