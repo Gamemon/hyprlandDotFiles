@@ -1,0 +1,32 @@
+# --- Text & Clock Settings ---
+show-failed-attempts
+font=JetBrainsMono Nerd Font
+font-size=24
+
+# This enables the clock and defines its format
+clock
+timestr=%H:%M
+# This enables the date and defines its format
+datestr=%A, %d %B
+# Adjust text position (positive is down, negative is up)
+indicator-y-position 0
+# --- Frosted Glass Effect ---
+font=/usr/share/fonts/TTF/JetBrainsMono-Bold.ttf
+image=/tmp/lockscreen.png
+effect-blur 10x6
+effect-vignette 0.2:0.5
+
+# --- High-Contrast Indicator ---
+indicator
+indicator-radius 120
+indicator-thickness 10
+
+
+
+# Use Alpha channels for a glass look (Format: #RRGGBBAA)
+# The last two digits are the Alpha (transparency)
+ring-color #cba6f788        # Semi-transparent Lavender ring
+inside-color #313244cc      # Semi-transparent Surface0 fill
+key-hl-color #f38ba8ff      # Solid Red on key press
+separator-color #00000000   # Invisible separator
+text-color #cdd6f4          # Text color

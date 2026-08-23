@@ -1,0 +1,30 @@
+{
+	"label" : "lock",
+	"action" : "~/bin/lock.sh",
+	"text" : "Lock",
+	"keybind" : "l"
+}
+{
+	"label" : "logout",
+	"action" : "hyprctl dispatch exit",
+	"text" : "Log Out",
+	"keybind" : "e"
+}
+{
+	"label" : "suspend",
+	"action" : "systemctl suspend",
+	"text" : "Suspend",
+	"keybind" : "u"
+}
+{
+	"label" : "reboot",
+	"action" : "systemctl reboot",
+	"text" : "󰑐",
+	"keybind" : "r"
+}
+{
+	"label" : "shutdown",
+	"action" : "systemctl poweroff",
+	"text" : "",
+	"keybind" : "s"
+}
