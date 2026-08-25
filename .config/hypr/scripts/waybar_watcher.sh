@@ -1,8 +1,18 @@
 #!/bin/bash
+# =============================================================================
+# Waybar/Eww Auto-Switcher
+# Author: escproxy (github: Gamemon)
+# Repository: https://github.com/Gamemon/hyprlandDotFiles
+# =============================================================================
+#
+# Switches between Waybar+wallpaper and Eww widgets based on window activity.
+# When no windows are open on the active workspace, it shows Eww HUD widgets
+# and hides Waybar. When windows are present, it shows Waybar and hides Eww.
+# =============================================================================
 
 logfile="/tmp/waybar_watcher_loop_final.log"
 
-# Wallpapers
+# Wallpapers for different states
 wallpaper_with_window="/home/pewds/.config/hypr/wallpapers/black.png"
 wallpaper_without_window="/home/pewds/.config/hypr/wallpapers/bg_wallpaper.png"
 
@@ -12,7 +22,7 @@ waybar_visible=false
 
 monitor=$(hyprctl monitors -j | jq -r '.[0].name')
 
-# Eww widgets
+# Eww windows to show/hide
 eww_windows="active_workspace \
              ascii_decor_frame \
              audio_status \
@@ -28,8 +38,7 @@ eww_windows="active_workspace \
              welcome_text \
              workspace_window_text"
 
-
-# Start hyprpaper if needed
+# Start hyprpaper if not already running
 if ! pgrep -x hyprpaper > /dev/null; then
     echo "Starting hyprpaper..." >> "$logfile"
     hyprpaper &
