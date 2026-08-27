@@ -138,6 +138,20 @@ tooltip label {
     color: #a6e3a1;
 }
 
+#custom-opencode {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: @mauve;
+}
+
+#custom-opencode.active {
+    color: #cba6f7;
+    background: @background-secondary;
+    border-left: 2px solid @mauve;
+}
+
 /* -----------------------------------------------------------------------------
 * System monitoring modules
 * -------------------------------------------------------------------------- */

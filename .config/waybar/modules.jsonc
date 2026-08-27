@@ -14,6 +14,16 @@
     "class": "commits"
   },
 
+  "custom/opencode": {
+    "exec": "~/.config/waybar/scripts/opencode_status.sh",
+    "interval": 5,
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "kitty --directory /home/escproxy/opencode -e opencode",
+    "on-click-right": "kitty --hold -e bash -lc 'opencode stats && read'"
+  },
+
   "custom/pomodoro": {
 	  "format": "{}",
 	  "return-type": "json",
