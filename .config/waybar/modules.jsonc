@@ -43,8 +43,8 @@
     "format": "[ {icon} ]",
     "format-icons": {
       "1": "󰫙", // Terminal
-      "2": "", // Music
-      "3": "", // Work (master)
+      "2": "", // Work (master)
+      "3": "", // Music
       "4": "", // Single Focus (monocle)
       "5": "", // Extra/Continuous (Scroll)
       "default": ""
