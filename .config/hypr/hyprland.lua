@@ -7,6 +7,8 @@ local menu = "wofi --show drun"
 hl.config({
 
     env = {
+        "XCURSOR_THEME,Simp1e-Catppuccin-Mocha",
+        "HYPRCURSOR_THEME,Simp1e-Catppuccin-Mocha",
         "XCURSOR_SIZE,24",
         "HYPRCURSOR_SIZE,24",
         "WLR_DRM_NO_MODIFIERS,1",
@@ -160,7 +162,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("swaync & hypridle")
     hl.exec_cmd("nordvpn c chicago")
     hl.exec_cmd("linux-wallpaper-engine --no-fullscreen-pause")
-    hl.exec_cmd("~/.config/eww/scripts/launch_hud.sh")
+    hl.exec_cmd("sleep 1.5 && ~/.config/eww/scripts/launch_hud.sh")
     --hl.exec_cmd([[[workspace 5 silent] kitty --hold -e sh -c "fastfetch -l ~/.config/fastfetch/altlogo.txt; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch -l ~/.config/fastfetch/logo.txt; fastfetch; lsd; toilet --rainbow Have a good day!"]])
     hl.exec_cmd([[[workspace 5 silent] kitty --override initial_window_width=120 --override initial_window_height=40 sh -c "fortune | figlet -w 100 -f mini | cowsay -n -r | nms -f magenta; read"]])
     --hl.exec_cmd([[[workspace 2 silent] kitty sh -c "$(echo -e 'asciiquarium\nhome/escproxy/pond/bin/pond' | shuf -n 1)"]])
@@ -174,6 +176,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("[workspace 4 silent] kitty --hold -e cliamp --provider spotify --visualizer ClassicLED")
     hl.exec_cmd("[workspace 5 silent] kitty --override initial_window_width=40 --override initial_window_height=20 --hold -e 'tty-clock' -C 5 -b -c")
     hl.exec_cmd("[workspace 1 silent] firefox")
+    hl.exec_cmd("[workspace special:magic silent] kitty --directory /home/escproxy/opencode --hold -e opencode")
     hl.exec_cmd("snappy-switcher --daemon")
     hl.exec_cmd("~/.config/eww/scripts/audio/ascii_visualizer.py &")
     hl.exec_cmd("cava -p ~/.config/cava/config")
@@ -295,4 +298,15 @@ hl.window_rule({
     },
     float = true,
     pin = true,             -- Keeps the video visible across all workspaces
+})
+
+-- ── Eww HUD Window Rules ──────────────────────────────────────
+hl.window_rule({
+    match = { class = "^(eww-)" },
+    float = true,
+    pin = true,
+    border_size = 0,
+    no_shadow = true,
+    no_focus = true,
+    no_initial_focus = true,
 })
