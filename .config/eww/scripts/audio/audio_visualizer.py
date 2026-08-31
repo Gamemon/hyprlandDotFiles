@@ -112,10 +112,12 @@ def main():
     parser.add_argument("--out-path", default="/tmp/visualizer.txt")
     parser.add_argument("--width", type=int, default=DEFAULT_WIDTH)
     parser.add_argument("--height", type=int, default=DEFAULT_HEIGHT)
+    parser.add_argument("--from-file", action="store_true",
+                        help="always use the persistent /tmp/cava.raw loop, even when stdin is not a tty (autostart/systemd/nohup)")
     args = parser.parse_args()
 
     # If piped directly via standard input
-    if not sys.stdin.isatty():
+    if not sys.stdin.isatty() and not args.from_file:
         process_stream(sys.stdin, args.out_path, args.width, args.height)
     else:
         # Otherwise keep file stream continuously open

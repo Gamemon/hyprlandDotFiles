@@ -23,7 +23,8 @@
   "modules-center": [
     "memory",
     "cpu",
-    "temperature"
+    "temperature",
+    "custom/battery-eta"
   ],
   
   "modules-right": [

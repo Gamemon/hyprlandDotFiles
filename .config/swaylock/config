@@ -1,32 +1,35 @@
-# --- Text & Clock Settings ---
-show-failed-attempts
+# swaylock Catppuccin Mocha (used when launched directly; lock.sh passes its own flags)
+# NOTE: this build requires '=' (not a space) for options that take a value.
 font=JetBrainsMono Nerd Font
-font-size=24
-
-# This enables the clock and defines its format
+font-size=48
 clock
 timestr=%H:%M
-# This enables the date and defines its format
-datestr=%A, %d %B
-# Adjust text position (positive is down, negative is up)
-indicator-y-position 0
-# --- Frosted Glass Effect ---
-font=/usr/share/fonts/TTF/JetBrainsMono-Bold.ttf
-image=/tmp/lockscreen.png
-effect-blur 10x6
-effect-vignette 0.2:0.5
+datestr=%A, %e %B
 
-# --- High-Contrast Indicator ---
+effect-vignette=0.4:0.6
+
 indicator
-indicator-radius 120
-indicator-thickness 10
+indicator-radius=160
+indicator-thickness=12
+indicator-idle-visible
+fade-in=0.3
 
-
-
-# Use Alpha channels for a glass look (Format: #RRGGBBAA)
-# The last two digits are the Alpha (transparency)
-ring-color #cba6f788        # Semi-transparent Lavender ring
-inside-color #313244cc      # Semi-transparent Surface0 fill
-key-hl-color #f38ba8ff      # Solid Red on key press
-separator-color #00000000   # Invisible separator
-text-color #cdd6f4          # Text color
+ring-color=#cba6f7
+ring-clear-color=#89b4fa
+ring-ver-color=#a6e3a1
+ring-wrong-color=#f38ba8
+ring-caps-lock-color=#f9e2af
+key-hl-color=#89b4fa
+bs-hl-color=#f38ba8
+inside-color=#1e1e2e
+inside-clear-color=#313244
+inside-ver-color=#313244
+inside-wrong-color=#313244
+inside-caps-lock-color=#45475a
+line-color=#00000000
+separator-color=#00000000
+text-color=#cdd6f4
+text-clear-color=#a6adc8
+text-ver-color=#a6e3a1
+text-wrong-color=#f38ba8
+text-caps-lock-color=#f9e2af

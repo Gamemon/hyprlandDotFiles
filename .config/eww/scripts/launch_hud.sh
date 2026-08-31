@@ -27,4 +27,4 @@ eww open-many \
   cpu_ram_storage_bars
 
 # right_internet_text was put into net_bars
-python3 ~/.config/eww/scripts/audio/audio_visualizer.py
+python3 ~/.config/eww/scripts/audio/audio_visualizer.py --from-file

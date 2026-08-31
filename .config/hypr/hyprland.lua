@@ -118,6 +118,34 @@ hl.monitor({
 hl.workspace_rule({ workspace = "1", layout = "master" })
 hl.workspace_rule({ workspace = "4", layout = "monocle" })
 hl.workspace_rule({ workspace = "5", layout = "scrolling" })
+
+-- Promote the focused window to the "master"/primary tile on any layout.
+-- master -> swapwithmaster ; dwindle -> swap with the workspace's first tiled window.
+local function swapwithmaster()
+    local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
+    if not ws then return end
+
+    local win = hl.get_active_window()
+    if not win or win.floating then return end
+
+    if ws.tiled_layout == "master" then
+        hl.dispatch(hl.dsp.layout("swapwithmaster"))
+        return
+    end
+
+    if ws.tiled_layout == "dwindle" then
+        local target
+        for _, w in ipairs(ws:get_windows()) do
+            if not w.floating then
+                target = w
+                break
+            end
+        end
+        if target and tostring(win.address) ~= tostring(target.address) then
+            hl.dispatch(hl.dsp.window.swap({ target = "address:" .. target.address }))
+        end
+    end
+end
 -- =========================================================================
 -- ANIMATIONS & CURVES
 -- =========================================================================
@@ -163,17 +191,17 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("nordvpn c chicago")
     hl.exec_cmd("linux-wallpaper-engine --no-fullscreen-pause")
     hl.exec_cmd("sleep 1.5 && ~/.config/eww/scripts/launch_hud.sh")
-    --hl.exec_cmd([[[workspace 5 silent] kitty --hold -e sh -c "fastfetch -l ~/.config/fastfetch/altlogo.txt; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch -l ~/.config/fastfetch/logo.txt; fastfetch; lsd; toilet --rainbow Have a good day!"]])
+    hl.exec_cmd([[[workspace 5 silent] kitty --hold -e sh -c "fastfetch -l ~/.config/fastfetch/altlogo.txt; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch; fastfetch -l ~/.config/fastfetch/logo.txt; fastfetch; lsd; toilet --rainbow Have a good day!"]])
     hl.exec_cmd([[[workspace 5 silent] kitty --override initial_window_width=120 --override initial_window_height=40 sh -c "fortune | figlet -w 100 -f mini | cowsay -n -r | nms -f magenta; read"]])
     --hl.exec_cmd([[[workspace 2 silent] kitty sh -c "$(echo -e 'asciiquarium\nhome/escproxy/pond/bin/pond' | shuf -n 1)"]])
     hl.exec_cmd("[workspace 1 silent] obsidian")
     --hl.exec_cmd("[workspace 2 silent] spotify")
     hl.exec_cmd("[workspace 2 silent] kitty --hold -e nvim")
     hl.exec_cmd("[workspace 2 silent] kitty --hold -e fetch -l arch --infinite -s 1.5 --depth 2.0 --height 40 --box")
-    hl.exec_cmd("[workspace 3 silent] kitty --hold -e taskwarrior-tui")
+    hl.exec_cmd("[workspace 1 silent] kitty --hold -e taskwarrior-tui")
     --hl.exec_cmd("[workspace 4 silent] kitty --hold -e btop")
     --hl.exec_cmd("[workspace 4 silent] steam")
-    hl.exec_cmd("[workspace 4 silent] kitty --hold -e cliamp --provider spotify --visualizer ClassicLED")
+    hl.exec_cmd("[workspace 3 silent] kitty --hold -e cliamp --provider spotify --visualizer ClassicLED")
     hl.exec_cmd("[workspace 4 silent] kitty --directory /home/escproxy/opencode --class herdr -e herdr --session dev")
     hl.exec_cmd("[workspace 5 silent] kitty --override initial_window_width=40 --override initial_window_height=20 --hold -e 'tty-clock' -C 5 -b -c")
     hl.exec_cmd("[workspace 1 silent] firefox")
@@ -209,7 +237,11 @@ hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager))
 hl.bind("SUPER + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + R", hl.dsp.exec_cmd(menu))
 hl.bind("SUPER + P", hl.dsp.window.pseudo({ action = "toggle" }))
-hl.bind("SUPER + SHIFT + J", hl.dsp.layout("swapwithmaster"))
+-- NOTE: SUPER+SHIFT+J (uppercase) is intentionally NOT bound separately.
+-- On a US layout J/j are the same physical key, so a second bind would fire
+-- alongside SUPER+SHIFT+j on one press, swapping twice -> windows bounce back
+-- and only the cursor recenters. One bind only.
+hl.bind("SUPER + SHIFT + j", swapwithmaster)
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("SUPER + SHIFT + P", hl.dsp.window.pin())
 
@@ -221,15 +253,14 @@ hl.bind("SUPER + k", hl.dsp.focus({ direction = "u" }))
 hl.bind("SUPER + l", hl.dsp.focus({ direction = "r" }))
 
 -- Move windows
-hl.bind("SUPER + SHIFT + j", hl.dsp.exec_cmd("hyprctl dispatch layoutmsg swapwithmaster"))
 hl.bind("SUPER + SHIFT + left", hl.dsp.window.move({ direction = "l" }))
 hl.bind("SUPER + SHIFT + up", hl.dsp.window.move({ direction = "u" }))
 hl.bind("SUPER + SHIFT + down", hl.dsp.window.move({ direction = "d" }))
 hl.bind("SUPER + SHIFT + right", hl.dsp.window.move({ direction = "r" }))
 
 -- Mouse splits
-hl.bind("SUPER + SHIFT + mouse_up", hl.dsp.exec_cmd("hyprctl dispatch splitratio +0.1"))
-hl.bind("SUPER + SHIFT + mouse_down", hl.dsp.exec_cmd("hyprctl dispatch splitratio -0.1"))
+hl.bind("SUPER + SHIFT + mouse_up", hl.dsp.layout("splitratio +0.1"))
+hl.bind("SUPER + SHIFT + mouse_down", hl.dsp.layout("splitratio -0.1"))
 
 -- Utils
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
@@ -276,7 +307,7 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 
 -- Lid Switch
 hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("~/bin/lock.sh"), { locked = true })
-hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("hyprctl dispatch dpms on"), { locked = true })
+hl.bind("switch:off:Lid Switch", hl.dsp.dpms({ action = "on" }), { locked = true })
 
 
 

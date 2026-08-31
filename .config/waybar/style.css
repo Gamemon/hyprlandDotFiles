@@ -177,12 +177,37 @@ tooltip label {
     background: @background-primary;
     color: @teal;
     border-left: 4px solid @teal;
-    border-radius: 0 6px 6px 0;
     margin: 6px 2px 6px 0;
     padding: 4px 12px;
 }
 
 #temperature.critical {
+    background: @error;
+    color: @base;
+    border-left: 4px solid @maroon;
+}
+
+#custom-battery-eta {
+    background: @background-primary;
+    color: @peach;
+    border-left: 4px solid @peach;
+    border-radius: 0 6px 6px 0;
+    margin: 6px 2px 6px 0;
+    padding: 4px 12px;
+}
+
+#custom-battery-eta.charging {
+    color: @yellow;
+    border-left: 4px solid @yellow;
+}
+
+#custom-battery-eta.warning {
+    background: @warning;
+    color: @base;
+    border-left: 4px solid @peach;
+}
+
+#custom-battery-eta.critical {
     background: @error;
     color: @base;
     border-left: 4px solid @maroon;
@@ -420,6 +445,7 @@ tooltip label {
 #cpu:hover,
 #memory:hover,
 #temperature:hover,
+#custom-battery-eta:hover,
 #backlight:hover,
 #network:hover,
 #pulseaudio:hover,

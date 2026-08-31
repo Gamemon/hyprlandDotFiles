@@ -35,8 +35,8 @@
 
   // Workspaces (Hyprland)
   "hyprland/workspaces": {
-    "on-scroll-up": "hyprctl dispatch workspace r-1",
-    "on-scroll-down": "hyprctl dispatch workspace r+1",
+    "on-scroll-up": "hyprctl dispatch \"hl.dsp.focus({workspace = 'r-1'})\"",
+    "on-scroll-down": "hyprctl dispatch \"hl.dsp.focus({workspace = 'r+1'})\"",
     "on-click": "activate",
     "active-only": false,
     "all-outputs": true,
@@ -125,6 +125,16 @@
     },
     "format": "{icon} {capacity: >3}%",
     "format-icons": ["", "", "", "", ""]
+  },
+
+  // Battery ETA (estimated life left)
+  "custom/battery-eta": {
+    "exec": "~/.config/waybar/scripts/battery_eta.sh",
+    "interval": 15,
+    "return-type": "json",
+    "format": " {}",
+    "tooltip": true,
+    "hide-empty-text": true
   },
 
   // Language (Hyprland)
