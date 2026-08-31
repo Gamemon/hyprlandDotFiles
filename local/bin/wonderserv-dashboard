@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Opens the Wonderserv start dashboard in a dedicated Firefox "app" window
+# (own profile "wonderserv-start"). First launch: log into authentik once.
+# Subsequent launches reuse the running instance (new window if already open).
+set -euo pipefail
+
+profile="wonderserv-start"
+profile_dir="$HOME/.mozilla/firefox/$profile"
+
+if ! grep -q "Name=$profile" "$HOME/.mozilla/firefox/profiles.ini" 2>/dev/null; then
+    mkdir -p "$profile_dir"
+    printf '\n[Profile%s]\nName=%s\nIsRelative=1\nPath=%s\nDefault=0\n' \
+        "$(($(grep -c '^\[Profile' "$HOME/.mozilla/firefox/profiles.ini") + 0))" \
+        "$profile" "$profile" >> "$HOME/.mozilla/firefox/profiles.ini"
+fi
+
+exec firefox -P "$profile" --new-window "https://start.wonderserv.dpdns.org" "$@"

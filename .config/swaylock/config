@@ -9,8 +9,8 @@ datestr=%A, %e %B
 effect-vignette=0.4:0.6
 
 indicator
-indicator-radius=160
-indicator-thickness=12
+indicator-radius=240
+indicator-thickness=16
 indicator-idle-visible
 fade-in=0.3
 

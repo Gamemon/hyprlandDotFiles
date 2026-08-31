@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Homelab service launcher: opens a wonderserv service in the default browser.
+# Usage: homelab-open <service>
+set -euo pipefail
+
+service="${1:-start}"
+url=""
+case "$service" in
+    authentik)  url="https://authentik.wonderserv.dpdns.org" ;;
+    bluemap)    url="https://map.wonderserv.dpdns.org" ;;
+    casaos)     url="https://home.wonderserv.dpdns.org" ;;
+    crafty)     url="https://crafty.wonderserv.dpdns.org" ;;
+    jellyfin)   url="https://jellyfin.wonderserv.dpdns.org" ;;
+    ncdu)       url="https://ncdu.wonderserv.dpdns.org" ;;
+    npm)        url="https://npm.wonderserv.dpdns.org" ;;
+    opencode)   url="https://opencode.wonderserv.dpdns.org" ;;
+    playit)     url="https://playit.wonderserv.dpdns.org" ;;
+    prowlarr)   url="https://prowlarr.wonderserv.dpdns.org" ;;
+    qbittorrent) url="https://qb.wonderserv.dpdns.org" ;;
+    radarr)     url="https://radarr.wonderserv.dpdns.org" ;;
+    sonarr)     url="https://sonarr.wonderserv.dpdns.org" ;;
+    start)      url="https://start.wonderserv.dpdns.org" ;;
+    *)
+        echo "homelab-open: unknown service '$service'" >&2
+        echo "known: authentik bluemap casaos crafty jellyfin ncdu npm opencode playit prowlarr qbittorrent radarr sonarr start" >&2
+        exit 1
+        ;;
+esac
+
+exec xdg-open "$url"
