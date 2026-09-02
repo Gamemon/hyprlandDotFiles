@@ -1,0 +1,219 @@
+[
+  {
+    "plugin_id": "escproxy.dev-layout",
+    "name": "Dev Layout",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "Boot opencode, goose, and nvim tabs in the dev session",
+    "manifest_path": "/home/escproxy/.config/herdr/plugins/local/dev-layout/herdr-plugin.toml",
+    "plugin_root": "/home/escproxy/.config/herdr/plugins/local/dev-layout",
+    "enabled": true,
+    "platforms": [
+      "linux"
+    ],
+    "startup": [
+      {
+        "command": [
+          "python3",
+          "startup.py"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "apply",
+        "title": "Apply dev layout",
+        "command": [
+          "python3",
+          "startup.py"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "goose",
+        "title": "goose",
+        "placement": "tab",
+        "command": [
+          "bash",
+          "-lc",
+          "cd /home/escproxy/opencode && exec goose"
+        ]
+      },
+      {
+        "id": "nvim",
+        "title": "nvim",
+        "placement": "tab",
+        "command": [
+          "bash",
+          "-lc",
+          "cd /home/escproxy/opencode && exec nvim"
+        ]
+      },
+      {
+        "id": "opencode",
+        "title": "opencode",
+        "placement": "tab",
+        "command": [
+          "bash",
+          "-lc",
+          "cd /home/escproxy/opencode && exec opencode"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "local"
+    }
+  },
+  {
+    "plugin_id": "herdr-agent-office",
+    "name": "Agent Office",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.5",
+    "description": "Your agent fleet as a pixel-art office: see who's working, who's stuck, jump to them.",
+    "manifest_path": "/home/escproxy/.config/herdr/plugins/github/herdr-agent-office-2ef3f84e7160/herdr-plugin.toml",
+    "plugin_root": "/home/escproxy/.config/herdr/plugins/github/herdr-agent-office-2ef3f84e7160",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos",
+      "windows"
+    ],
+    "startup": [
+      {
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "python3",
+          "-m",
+          "office",
+          "startup"
+        ]
+      },
+      {
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "py",
+          "-3",
+          "-m",
+          "office",
+          "startup"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "jump-blocked",
+        "title": "Jump to longest-blocked agent",
+        "contexts": [
+          "global"
+        ],
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "python3",
+          "-m",
+          "office",
+          "action-jump-blocked"
+        ]
+      },
+      {
+        "id": "jump-blocked-windows",
+        "title": "Jump to longest-blocked agent",
+        "contexts": [
+          "global"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "py",
+          "-3",
+          "-m",
+          "office",
+          "action-jump-blocked"
+        ]
+      },
+      {
+        "id": "open",
+        "title": "Open Agent Office",
+        "contexts": [
+          "global"
+        ],
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "python3",
+          "-m",
+          "office",
+          "action-open"
+        ]
+      },
+      {
+        "id": "open-windows",
+        "title": "Open Agent Office",
+        "contexts": [
+          "global"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "command": [
+          "py",
+          "-3",
+          "-m",
+          "office",
+          "action-open"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "office",
+        "title": "Agent Office",
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "placement": "tab",
+        "command": [
+          "python3",
+          "-m",
+          "office",
+          "run"
+        ]
+      },
+      {
+        "id": "office-windows",
+        "title": "Agent Office",
+        "platforms": [
+          "windows"
+        ],
+        "placement": "tab",
+        "command": [
+          "py",
+          "-3",
+          "-m",
+          "office",
+          "run"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "suisya-systems",
+      "repo": "herdr-agent-office",
+      "resolved_commit": "ee526038db80bef7947c6cddda5688d01df45a1f",
+      "managed_path": "/home/escproxy/.config/herdr/plugins/github/herdr-agent-office-2ef3f84e7160",
+      "installed_unix_ms": 1788295075520
+    }
+  }
+]

@@ -1,0 +1,89 @@
+# herdr — terminal workspace manager for AI coding agents
+# ~/.config/herdr/config.toml
+
+# First-run notification/onboarding handled by this file; no prompt.
+onboarding = false
+
+[theme]
+name = "kanagawa"
+
+[terminal]
+# Inherit the launching directory. The autostart kitty window rooted at
+# ~/opencode carries that project into the first workspace; every later
+# pane/tab/workspace follows whatever it split off from.
+new_cwd = "follow"
+
+[update]
+# Keep agent-detection manifest fresh so opencode/new agents stay recognized.
+channel = "stable"
+manifest_check = true
+
+[session]
+# Resume agent panes into their native conversation sessions after a restart.
+resume_agents_on_restore = true
+
+[worktrees]
+# Git worktrees created from the sidebar land here: <dir>/<repo>/<branch-slug>.
+directory = "~/.herdr/worktrees"
+
+[ui]
+# Pinned sidebar so switching workspaces never shifts the layout.
+sidebar_width = 36
+sidebar_min_width = 36
+sidebar_max_width = 36
+# Tell which agent lives where straight from the pane borders.
+show_agent_labels_on_pane_borders = true
+# Declutter: no tab bar when a workspace has exactly one tab.
+hide_tab_bar_when_single_tab = true
+# Group agents by workspace in the sidebar.
+agent_panel_sort = "spaces"
+
+[ui.toast]
+# Desktop notifications (SwayNC) when a background agent blocks/finishes.
+delivery = "system"
+delay_seconds = 1
+
+[ui.toast.clipboard]
+enabled = true
+
+# --- Custom commands -------------------------------------------------------
+# Quick tools bound as prefix + ctrl+alt chord; all open in the focused
+# pane's working directory when herdr can detect it.
+
+[[keys.command]]
+key = "prefix+alt+o"
+type = "pane"
+command = "opencode"
+description = "start an opencode agent here"
+
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+description = "open lazygit"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+alt+t"
+type = "popup"
+command = "exec \"${SHELL:-sh}\""
+description = "scratch terminal"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+alt+r"
+type = "popup"
+command = "ranger"
+description = "ranger file manager"
+width = "60%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+alt+b"
+type = "popup"
+command = "btop"
+description = "btop system monitor"
+width = "80%"
+height = "80%"
