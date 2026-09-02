@@ -1,0 +1,7 @@
+[Unit]
+Description=7shifts shift reminder (5-minute granularity, silent without a token)
+
+[Service]
+Type=oneshot
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+ExecStart=/home/escproxy/.local/bin/7shifts remind --before 60

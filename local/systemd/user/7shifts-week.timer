@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the 7shifts weekly summary every Sunday at 19:00
+
+[Timer]
+OnCalendar=Sun 19:00
+Persistent=true
+Unit=7shifts-week.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the 7shifts reminder every 5 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Unit=7shifts-remind.service
+
+[Install]
+WantedBy=timers.target

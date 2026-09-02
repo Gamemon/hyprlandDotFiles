@@ -1,0 +1,15 @@
+[Unit]
+Description=Canvas ICS → Taskwarrior + Obsidian sync
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 %h/Junior1Sem/*scripts/canvas_sync.py
+# Fallback to wrapper if python directly fails
+ExecStartPost=/bin/bash -c 'echo "[canvas-sync] completed at $(date --iso-8601=seconds)" >> %h/Junior1Sem/.canvas_sync.log'
+StandardOutput=append:%h/Junior1Sem/.canvas_sync.log
+StandardError=append:%h/Junior1Sem/.canvas_sync.log
+
+[Install]
+WantedBy=default.target

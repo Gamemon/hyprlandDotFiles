@@ -1,0 +1,7 @@
+[Unit]
+Description=7shifts weekly hours/tips summary notification
+
+[Service]
+Type=oneshot
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+ExecStart=/bin/bash -lc 'SUMMARY=$(/home/escproxy/.local/bin/7shifts week 2>/dev/null); if [ -n "$SUMMARY" ]; then echo "$SUMMARY" | /usr/bin/notify-send -a 7shifts "This week in 7shifts"; fi'

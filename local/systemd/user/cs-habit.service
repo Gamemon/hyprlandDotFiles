@@ -1,0 +1,6 @@
+[Unit]
+Description=Daily CS Habit Notification
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'COMMITS=$(~/.local/bin2/cs-habit-check.sh); if [ "$COMMITS" -eq 0 ]; then notify-send -u critical "Daily CS Check" "0 commits today! Time to knock out a LeetCode medium or update LinkedIn."; fi'
