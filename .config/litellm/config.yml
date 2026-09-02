@@ -1,0 +1,40 @@
+model_list:
+  # 1. Primary: Direct Gemini AI Studio
+  - model_name: goose-agent-model # Group identifier that Goose calls
+    litellm_params:
+      model: gemini/gemini-3.6-flash
+      api_key: "os.environ/GEMINI_API_KEY"
+      rpm: 15
+
+  # 2. First Backup: OpenRouter Gemini
+  - model_name: openrouter-backup
+    litellm_params:
+      model: openrouter/google/gemini-2.5-flash
+      api_key: "os.environ/OPENROUTER_API_KEY"
+
+  # 3. Second Backup: Groq Llama 3.3
+  - model_name: groq-backup
+    litellm_params:
+      model: groq/llama3.3-70b
+      api_key: "os.environ/GROQ_API_KEY"
+
+  # 4. OpenRouter free fallbacks (MiniMax M3 Free: 1M ctx, verified working;
+  #    GLM 5.2 Free: Ox-Alpha-family, but shared-pool rate-limited upstream)
+  - model_name: openrouter-minimax-free
+    litellm_params:
+      model: "openrouter/minimax/minimax-m3:free"
+      api_key: "os.environ/OPENROUTER_API_KEY"
+
+  - model_name: openrouter-glm-free
+    litellm_params:
+      model: "openrouter/z-ai/glm-5.2:free"
+      api_key: "os.environ/OPENROUTER_API_KEY"
+
+router_settings:
+  # 'failover' is not a valid strategy; simple-shuffle (default) + fallbacks
+  # implements sequential primary -> backup retirement.
+  routing_strategy: simple-shuffle
+  num_retries: 2
+  fallbacks:
+    - goose-agent-model: ["openrouter-minimax-free", "openrouter-glm-free", "openrouter-backup", "groq-backup"]
+
