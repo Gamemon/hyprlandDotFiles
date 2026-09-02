@@ -1,0 +1,38 @@
+id = "escproxy.dev-layout"
+name = "Dev Layout"
+version = "0.1.0"
+min_herdr_version = "0.7.0"
+description = "Boot opencode, goose, crush, and nvim tabs in the dev session"
+platforms = ["linux"]
+
+[[startup]]
+command = ["python3", "startup.py"]
+
+[[actions]]
+id = "apply"
+title = "Apply dev layout"
+command = ["python3", "startup.py"]
+
+[[panes]]
+id = "opencode"
+title = "opencode"
+placement = "tab"
+command = ["bash", "-lc", "cd /home/escproxy/opencode && exec opencode"]
+
+[[panes]]
+id = "goose"
+title = "goose"
+placement = "tab"
+command = ["bash", "-lc", "cd /home/escproxy/opencode && exec goose"]
+
+[[panes]]
+id = "crush"
+title = "crush"
+placement = "tab"
+command = ["bash", "-lc", "cd /home/escproxy/opencode && exec crush"]
+
+[[panes]]
+id = "nvim"
+title = "nvim"
+placement = "tab"
+command = ["bash", "-lc", "cd /home/escproxy/opencode && DEV_LAYOUT_PLAIN=1 exec nvim"]

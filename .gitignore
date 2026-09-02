@@ -99,3 +99,6 @@
 # Temp files
 *.tmp
 *.tmp.*
+# Herdr plugin Python bytecode caches
+.config/herdr/plugins/*/__pycache__/
+.config/herdr/plugins/*/*.pyc
